@@ -89,6 +89,10 @@ module EulerExtensions
     return c1 == c2
 
   end
+
+  def is_triangular?
+    (Math.sqrt(8*self+1)-1) % 2 == 0
+  end
 end
 
 class Fixnum
