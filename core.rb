@@ -1,6 +1,7 @@
 require 'openssl' # mod_exp
 require 'set'
 require './lib/grid'
+require './lib/point'
 
 module EulerExtensions
 
