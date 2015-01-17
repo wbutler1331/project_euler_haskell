@@ -30,11 +30,11 @@ module EulerExtensions
     self.to_s.reverse == self.to_s
   end
 
-  def even
+  def even?
     self % 2 == 0
   end
 
-  def odd
+  def odd?
     not even
   end
 
@@ -92,6 +92,20 @@ module EulerExtensions
 
   def is_triangular?
     (Math.sqrt(8*self+1)-1) % 2 == 0
+  end
+
+  def collatz
+    sequence = []
+    n = self
+    while n != 0
+      if n.even?
+        n = n / 2
+      else
+        n = (n*3)+1
+      end
+      sequence << n
+    end
+    sequence
   end
 end
 
