@@ -1,5 +1,6 @@
 require 'openssl' # mod_exp
 require 'set'
+require './lib/grid'
 
 module EulerExtensions
 
@@ -84,9 +85,6 @@ module EulerExtensions
     # if a ^ self mod self == a mod self then self is prime
     c1 = a.to_bn.mod_exp(self,self)
     c2 = (a % self)
-    puts "n: #{a}"
-    puts "a^n % n: #{c1}"
-    puts "a % n: #{c2}"
 
     return c1 == c2
 

@@ -1,54 +1,5 @@
 require './core'
 
-class Grid
-  def initialize str
-    @grid = str.split("\n").map{|row| row.split(" ").map(&:to_i) }
-  end
-
-  def best_path
-    global_max = 0
-    @grid.each_with_index do |row,r|
-      row.each_with_index do |col,c|
-        directions = [:n,:nw,:sw,:s,:se,:e,:ne]
-        paths = directions.map do |direction|
-          collect_direction direction, r, c, 3
-        end
-        local_max = path.select(&:not_nil?).map {|p|p.inject(:*)}.max
-        if local_max > global_max
-          global_max = local_max
-        end
-      end
-    end
-    global_max
-  end
-
-  private
-  def collect_direction d,r,c,n
-    directions = {
-      :n => lambda { |r,c,i|  [r-i,c] },
-      :e => lambda { |r,c,i|  [r,c+i] },
-      :s => lambda { |r,c,i|  [r+i,c] },
-      :w => lambda { |r,c,i|  [r,c-i] }
-    }
-    res = []
-
-    if d.length == 1
-      transformation = directions[d]
-    else
-      #FIXME cant compose functions with multiple args
-      
-      transformation = directions[d[0].to_sym] * directions[d[1].to_sym]
-    end
-
-    (0..n).each do |i|
-      nr,nc = transformation[r,c,i]
-      val = @grid[nr][nc]
-      return nil if val.nil? #if the value is nil? this path cant be taken
-      res << val
-    end
-  end
-end
-
 grid = Grid.new %Q{08 02 22 97 38 15 00 40 00 75 04 05 07 78 52 12 50 77 91 08
 49 49 99 40 17 81 18 57 60 87 17 40 98 43 69 48 04 56 62 00
 81 49 31 73 55 79 14 29 93 71 40 67 53 88 30 03 49 13 36 65
