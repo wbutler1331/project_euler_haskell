@@ -97,7 +97,7 @@ module EulerExtensions
   def collatz
     sequence = []
     n = self
-    while n != 0
+    while n != 1
       if n.even?
         n = n / 2
       else
