@@ -3,6 +3,37 @@ require 'set'
 
 module EulerExtensions
 
+  def can_be_written_as_sum_of_any? arr
+    arr.each do |n|
+      arr.each do |nn|
+        return true if n+nn == self
+      end
+    end
+    false
+  end
+
+  def abundant?
+    self.proper_factors.inject(:+) > self
+  end
+
+  def amicable_pair
+    potential_pair = self.proper_factors.inject(:+)
+    return nil if potential_pair == self #cant be the same number
+    if potential_pair.proper_factors.inject(:+) == self
+      [self,potential_pair]
+    else
+      nil
+    end
+  end
+
+  def proper_factors
+    self.factors.inject(:+).select { |n| n != self }
+  end
+
+  def factorial
+    f = 1; for i in 1..self; f*=i; end; f
+  end
+
   def index_prime
     primes = 2
     try = 3
