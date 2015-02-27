@@ -1,7 +1,3 @@
-prods = []
-
-(1..9).to_a.permutation.each do |n|
-  
-end
-
-puts prods
+require './core'
+pandigital_nums = (0..987654321).to_a.map(&pandigital)
+puts (pandigital_nums.length)
