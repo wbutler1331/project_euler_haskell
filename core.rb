@@ -3,6 +3,15 @@ require 'set'
 
 module EulerExtensions
 
+  def pandigital?
+    str = self.to_s.split(//)
+    first = str.sort
+    second = (1..str.length).to_a
+    puts first
+    puts second
+    first == second
+  end
+
   def can_be_written_as_sum_of_any? arr
     arr.each do |n|
       arr.each do |nn|
