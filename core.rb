@@ -5,6 +5,11 @@ require './lib/point'
 
 module EulerExtensions
 
+  def pandigital?
+    str = self.to_s
+    str.split(//).sort.map(&:to_i) == (1..str.length).to_a
+  end
+
   def index_prime
     primes = 2
     try = 3
@@ -36,7 +41,7 @@ module EulerExtensions
   end
 
   def odd?
-    not even
+    not even?
   end
 
   def is_prime?
@@ -64,6 +69,14 @@ module EulerExtensions
       factors.add n if self % n == 0 and n.is_prime?
     end
     factors
+  end
+
+  def abundant
+    proper_factors.inject(:+) > self
+  end
+
+  def proper_factors
+    factors.inject(:+).select { |n| n != self }.uniq
   end
 
   def factors

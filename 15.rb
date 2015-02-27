@@ -1,24 +1,29 @@
-require './core'
-
-def legal_moves point,end_point
-  moves = []
-  east = point.east
-  south = point.south
-  moves << east if east.x <= end_point.x
-  moves << south if south.y >= 0
-  moves
+def npaths n
+  bound = n*2+1
+  rows = [[0],[1,1]]
+  (2..bound).each do |nrow|
+    previous_row = rows[nrow-1]
+    previous_row_len = previous_row.length-1
+    new_row_len = previous_row_len + 1
+    rows << (0..new_row_len).map do |ncol|
+      if ncol == 0 or ncol == new_row_len
+        1
+      else
+        previous_row[ncol-1]+previous_row[ncol]
+      end
+    end
+  end
+  print_rows rows
+  rows[bound-1].max
 end
 
-$paths = 0
-
-def compute start,end_point
-  moves = legal_moves start, end_point
-  if moves.length == 0
-    $paths += 1
-  else
-    return moves.each { |move| compute move, end_point }
+def print_rows rows
+  rows.each do |row|
+    row.each do |col|
+      print col.to_s + ","
+    end
+    puts " "
   end
 end
 
-compute (Point.new 0,3),(Point.new 3,0)
-puts $paths
+puts (npaths 20)
