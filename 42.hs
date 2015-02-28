@@ -9,7 +9,7 @@ isSquare n = sq * sq == n
 isTriangular n = isSquare $ (8*n)+1
 
 main = do
-	txt <- readFile "p042_words.txt"
+	txt <- readFile "./files/p042_words.txt"
 	let
 		words = lines txt
 		results = filter (isTriangular . score) words
