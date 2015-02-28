@@ -1,5 +1,12 @@
 module Core where
 
+containsSameDigits x y = (sort strx) == (sort stry)
+  where
+    strx = show x
+    stry = show y
+
+rmdups = map head . group . sort
+
 toInt n = read n :: Int
 
 takeStartingAt offset n list = take n (drop offset list)
