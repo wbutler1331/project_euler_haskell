@@ -2,6 +2,22 @@ module Core where
 
 import Data.List
 
+isPalindrome n = strn == rstrn
+  where
+    strn = show n
+    rstrn = reverse strn
+
+isLychrel n = worker 0 n
+  where
+    worker count n
+      | count == 50         = True
+      | isPalindrome answer = False
+      | otherwise           = worker (count+1) answer
+      where
+        answer = (read rstrn :: Integer) + n
+        strn = show n
+        rstrn = reverse strn
+
 factorial n = product [n, n-1 .. 1]
 
 nCr n r = n' `div` r'
