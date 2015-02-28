@@ -1,11 +1,21 @@
 module Core where
 
+import Data.List
+
+factorial n = product [n, n-1 .. 1]
+
+nCr n r = n' `div` r'
+    where
+    -- unroll just what you need and nothing more
+    n' = product [n, n-1 .. n-r+1]
+    r' = factorial r
+
 containsSameDigits x y = (sort strx) == (sort stry)
   where
     strx = show x
     stry = show y
 
-rmdups = map head . group . sort
+rmdups list = map (head . group . sort) list
 
 toInt n = read n :: Int
 

@@ -1,6 +1,5 @@
-import Data.List
+import Core
 
-containsSameDigits x y = (sort strx) == (sort stry)
-  where
-    strx = show x
-    stry = show y
+curious n = all (containsSameDigits n) $ map (n*) [1..6]
+
+main = print $ (+1) $ last $ takeWhile (not . curious) [1..]
