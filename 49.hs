@@ -3,6 +3,9 @@ import Factory.Math.Primality
 import Factory.Math.Implementations.Primality
 import Factory.Math.Implementations.PrimeFactorisation
 
+let rev [] = []
+let rev str = (last str) : rev (init str)
+
 toInt n = read n :: Integer
 
 -- (eq. to) find2km (2^k * n) = (k,n)
