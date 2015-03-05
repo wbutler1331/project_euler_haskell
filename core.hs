@@ -99,6 +99,7 @@ takeWrap n list
 
 takeWrapAt offset n list = drop offset $ takeWrap (n+offset) list
 
+isPandigital n = let strn = show n in (sort strn) == (concatMap show [1..length strn])
 
 --square
 
@@ -117,6 +118,8 @@ isPentagonal n = isSquare test && ((floor rootTest) `mod` 6) == 5
   where
       test = 24*n+1
       rootTest = sqrt $ fromIntegral test
+	  
+
 
 --triangular
 
