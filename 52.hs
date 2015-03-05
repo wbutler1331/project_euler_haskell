@@ -1,4 +1,4 @@
-import Core
+import Core.Tests
 
 curious n = all (containsSameDigits n) $ map (n*) [1..6]
 

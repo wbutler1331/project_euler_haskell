@@ -1,4 +1,4 @@
-import Core
+import Core.List
 import Data.List
 
 pandigitalProducts strnum = map (\(_,_,p) -> p)

@@ -1,3 +1,4 @@
+import Core.Primality
 import Data.List
 import Factory.Math.Primality
 import Factory.Math.Implementations.Primality

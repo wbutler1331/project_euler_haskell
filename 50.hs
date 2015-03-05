@@ -1,6 +1,6 @@
 import Factory.Math.Implementations.Primes.SieveOfEratosthenes
 import Factory.Math.Primality
-import Core
+import Core.List
 import qualified Data.IntSet as Set
 
 

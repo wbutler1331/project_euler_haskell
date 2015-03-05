@@ -1,4 +1,5 @@
-import Core
+import Core.Series
+import Core.Tests
 
 curious (x,y) = (isPentagonal $ floor (x+y)) && (isPentagonal $ floor (x-y))
 

@@ -1,5 +1,5 @@
 import Data.List
-import Core
+import Core.Primality
 
 
 main = do

@@ -1,4 +1,4 @@
-import Core
+import Core.Tests
 import Data.List
 
 limit = 9 -- because we are looking for a 1-9 pandigital number, doesnt make sense to include 10

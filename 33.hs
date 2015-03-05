@@ -1,14 +1,7 @@
+import Core.String
 import Data.List
-import Data.String.Utils
-
-replaceAny :: [String] -> String -> String -> String
-replaceAny [""] _ baseString = baseString
-replaceAny targetStrings replacementString baseString = foldr (\currentTarget currentBaseString -> replace currentTarget replacementString currentBaseString) baseString targetStrings
 
 charToString char = [char]
---------------------------------------------------------------------------
---Proj Euler 33 Test
---------------------------------------------------------------------------
 
 isCurious :: Int -> Int -> Bool
 isCurious num denom
