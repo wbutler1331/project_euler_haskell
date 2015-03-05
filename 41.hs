@@ -1,16 +1,11 @@
-import Factory.Math.Implementations.Primes.SieveOfEratosthenes
-import Data.Set (member, fromDistinctAscList)
 import Data.List
+import Core
 
-
-primes = takeWhile (<= 9999999999) $ sieveOfEratosthenes 9999999999
-setPrimes = fromDistinctAscList primes
-
-isPandigital n = let strn = show n in (sort strn) == (concatMap show [1..length strn])
 
 main = do
     print
-      $ head
-      $ sort
-      $ filter (\n -> n `member` setPrimes)
-      $ filter isPandigital [123456789..987654321]
+		$ maximum
+		$ filter (\n -> millerRabinPrimality n 5)
+		$ map (\n -> read n :: Integer)
+		$ map (concatMap show)
+		$ permutations [1..7]
