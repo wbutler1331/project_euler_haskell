@@ -1,3 +1,3 @@
 import Core.Series
 
-main = print $ sum $ filter even $ take 4000000 $ fibs
+main = print $ sum $ filter even $ takeWhile (<4000000) $ fibs
