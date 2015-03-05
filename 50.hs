@@ -11,7 +11,7 @@ test limit primes@(x:xs) = (process 1 $ takeWhile (<=limit) $ scanl1 (+) primes)
 			| otherwise = process (count+1) xs
 
 main = do
-		print "Enter limit: "
+		putStrLn "Enter limit: "
 		strLimit <- getLine
 		let limit = read strLimit
 		print
