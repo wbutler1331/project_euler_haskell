@@ -1,6 +1,9 @@
 module Core.Tests where
 
+import Core.Operations
 import Data.List
+
+isAbundant testNumber = ((sumFactors testNumber) - testNumber) > testNumber
 
 containsSameDigits x y = (sort strx) == (sort stry)
   where
@@ -18,7 +21,7 @@ isPentagonal n = isSquare test && ((floor rootTest) `mod` 6) == 5
 
 isSquare n = sq * sq == n
     where sq = floor $ sqrt $ (fromIntegral n::Double)
-	
+
 isHexagonal n = (floor (sqrt (fromIntegral (8*n+1))) + 1) `mod` 4 == 0
 
 isPandigital n = let strn = show n in (sort strn) == (concatMap show [1..length strn])
@@ -38,4 +41,3 @@ isLychrel n = worker 0 n
         answer = (read rstrn :: Integer) + n
         strn = show n
         rstrn = reverse strn
-		

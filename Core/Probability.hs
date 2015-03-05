@@ -1,5 +1,7 @@
 module Core.Probability where
 
+import Core.Operations
+
 nCr n r = n' `div` r'
     where
     -- unroll just what you need and nothing more
