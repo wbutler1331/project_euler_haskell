@@ -11,3 +11,8 @@ takeWrap n list
       listlen = length list
 
 takeWrapAt offset n list = drop offset $ takeWrap (n+offset) list
+
+headOr def []     = def
+headOr _   (x:xs) = x
+
+percentWhere f list = (fromIntegral $ (length $ filter f list)) / (fromIntegral $ length list)

@@ -3,19 +3,31 @@ module Core.Primality where
 -- (eq. to) find2km (2^k * n) = (k,n)
 find2km :: Integral a => a -> (a,a)
 find2km n = f 0 n
-    where 
+    where
         f k m
             | r == 1 = (k,m)
             | otherwise = f (k+1) q
-            where (q,r) = quotRem m 2        
- 
+            where (q,r) = quotRem m 2
+
+millerRabinPrimalityFor witnesses number = all (millerRabinPrimality number) witnesses
+
+millerRabinPrimality' = flip millerRabinPrimality
+
+
 -- n is the number to test; a is the (presumably randomly chosen) witness
+
+
 millerRabinPrimality :: Integer -> Integer -> Bool
+millerRabinPrimality 3 _ = True
+millerRabinPrimality 5 _ = True
+millerRabinPrimality 7 _ = True
+millerRabinPrimality 11 _ = True
+millerRabinPrimality 13 _ = True
 millerRabinPrimality n a
-    | a <= 1 || a >= n-1 = 
-        error $ "millerRabinPrimality: a out of range (" 
-              ++ show a ++ " for "++ show n ++ ")" 
     | n < 2 = False
+    | a <= 1 || a >= n-1 =
+        error $ "millerRabinPrimality: a out of range ("
+              ++ show a ++ " for "++ show n ++ ")"
     | even n = False
     | b0 == 1 || b0 == n' = True
     | otherwise = iter (tail b)
@@ -29,12 +41,12 @@ millerRabinPrimality n a
             | x == 1 = False
             | x == n' = True
             | otherwise = iter xs
- 
+
 -- (eq. to) pow' (*) (^2) n k = n^k
 pow' :: (Num a, Integral b) => (a->a->a) -> (a->a) -> a -> b -> a
 pow' _ _ _ 0 = 1
 pow' mul sq x' n' = f x' n' 1
-    where 
+    where
         f x n y
             | n == 1 = x `mul` y
             | r == 0 = f x2 q y
@@ -42,12 +54,12 @@ pow' mul sq x' n' = f x' n' 1
             where
                 (q,r) = quotRem n 2
                 x2 = sq x
- 
+
 mulMod :: Integral a => a -> a -> a -> a
 mulMod a b c = (b * c) `mod` a
 squareMod :: Integral a => a -> a -> a
 squareMod a b = (b * b) `rem` a
- 
+
 -- (eq. to) powMod m n k = n^k `mod` m
 powMod :: Integral a => a -> a -> a -> a
 powMod m = pow' (mulMod m) (squareMod m)

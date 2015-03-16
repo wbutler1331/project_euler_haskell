@@ -1,6 +1,5 @@
 
 import Data.List
-
 digitSum n = sum $ map (\n -> read [n]) (show n)
 
 main = do
