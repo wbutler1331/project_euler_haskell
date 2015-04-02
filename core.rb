@@ -4,6 +4,9 @@ require './lib/grid'
 require './lib/point'
 
 module EulerExtensions
+  def sign
+    "++-"[self <=> 0]
+  end
 
   def pandigital?
     str = self.to_s
