@@ -1,12 +1,7 @@
-import System.IO
+import Core.Tests
 import Data.Char
 
-score word = sum $ map (\c -> (ord c) - 64) word
-
-isSquare n = sq * sq == n
-    where sq = floor $ sqrt $ (fromIntegral n::Double)
-
-isTriangular n = isSquare $ (8*n)+1
+score = sum . map (\c -> (ord c) - 64)
 
 main = do
 	txt <- readFile "./files/p042_words.txt"
