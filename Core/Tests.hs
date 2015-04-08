@@ -22,6 +22,10 @@ isPentagonal n = isSquare test && ((floor rootTest) `mod` 6) == 5
 isSquare n = sq * sq == n
     where sq = floor $ sqrt $ (fromIntegral n::Double)
 
+isCube 1 = False
+isCube x = (round (fromIntegral x ** (1/3))) ^ 3 == x
+
+
 isHexagonal n = (floor (sqrt (fromIntegral (8*n+1))) + 1) `mod` 4 == 0
 
 isPandigital n = let strn = show n in (sort strn) == (concatMap show [1..length strn])

@@ -2,6 +2,8 @@ module Core.List where
 
 import Data.List
 
+anyN n f = (==n) . last . takeWhile (<=n) . scanl (\acc i -> if f i then acc+1 else acc) 0
+
 takeStartingAt offset n list = take n (drop offset list)
 
 takeWrap n list
