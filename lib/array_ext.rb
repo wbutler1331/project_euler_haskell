@@ -1,4 +1,15 @@
 class Array
+	def takeWhile
+		r = []
+		self.each do |i|
+			if not yield(i)
+				break
+			end
+			r << i
+		end
+		r
+	end
+
 	def head
 		self.first
 	end

@@ -4,6 +4,7 @@ require './lib/grid'
 require './lib/point'
 
 module EulerExtensions
+
   def sign
     "++-"[self <=> 0]
   end
