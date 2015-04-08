@@ -1,11 +1,18 @@
 import Data.Number.CReal
 import Core.List
 import Data.List
+import Text.Regex.PCRE
 
-
+lengthRepeating n = case res of
+                      []   -> 0
+                      list -> length $ (!!1) $ last $ sortBy (\a b -> (p a) `compare` (p b)) list
+                    where
+                        p = maximum . map length
+                        res = (n =~ "(.+?)\\1+" :: [[String]])
 
 main = print
-    $ sortBy (\(_,a) (_,b) -> compare a b)
-    $ map (\n -> (n,lengthRepeating n))
-    $ filter (\n -> length n == 100)
-    $ map ((drop 2) . (showCReal 100) . (1/)) [1..1000]
+  $ last
+  $ sortBy (\(_,a) (_,b) -> compare a b)
+  $ map (\(n,d) -> (n,lengthRepeating d))
+--  $ filter (\(n,d) -> length d == 10000)
+  $ map (\n -> (n, drop 2 $ showCReal 5000 $ 1/n)) [1..1000]
