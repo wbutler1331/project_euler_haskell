@@ -14,5 +14,4 @@ main = print
   $ last
   $ sortBy (\(_,a) (_,b) -> compare a b)
   $ map (\(n,d) -> (n,lengthRepeating d))
---  $ filter (\(n,d) -> length d == 10000)
   $ map (\n -> (n, drop 2 $ showCReal 5000 $ 1/n)) [1..1000]
