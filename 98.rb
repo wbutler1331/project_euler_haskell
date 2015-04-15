@@ -1,5 +1,5 @@
 def main
-	words 	 = get_words "p098_words.txt"
+	words 	 = get_words "files/p098_words.txt"
 	anagrams = get_anagrams words
 	n = 10
 	max = 0
