@@ -5,16 +5,11 @@ def main
 	max = 0
 	while true
 		sq = n**2
-#		puts "[+] Trying #{sq}"
 		anagrams.each do |w1,w2|
 			n2 = transform w1,w2,sq
-#			puts "[+] Transform is #{n2}"
 			if n2 and perfect_square?(n2)
-				puts "[+] #{sq} and #{n2} are perfect squares"
 				largest = if n2 > sq then n2 else sq end
 				max = largest if largest > max
-				puts "[+] Found new largest: #{max}"
-
 			end
 		end
 		n += 1
@@ -22,6 +17,7 @@ def main
 			sq.to_s.length > w1.length
 		end
 	end
+	puts max
 end
 
 def perfect_square? n
@@ -30,14 +26,14 @@ def perfect_square? n
 end
 
 def transform w1, w2, n
-	#puts "checking #{n} against #{w1} and #{w2}"
-	#gets
 	strn = n.to_s
 	return nil if strn.length != w1.length
 	subs = w1.split(//).zip strn.split(//)
 	return nil if subs.group_by { |x| x[1] }.any? { |_,group| group.group_by { |x| x[0] }.length > 1 }
 	lookup = Hash[subs]
-	w2.split(//).map { |c| lookup[c] }.join.to_i
+	final = w2.split(//).map { |c| lookup[c] }
+	return nil if final.first == "0"
+	final.join.to_i
 end
 
 def get_words filename
